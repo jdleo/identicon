@@ -1,4 +1,16 @@
 defmodule Identicon do
+  @moduledoc """
+    Provides methods for hashing a string input, and converting into github-style identicon images.
+  """
+
+  @doc """
+  Main method that takes some input, and outputs a .png representing identicon digest of that string.
+
+  `input`: string to convert to identicon
+
+  ## Example
+      iex> Identicon.main("hello")
+  """
   def main(input) do
     input
     |> hash_input()
@@ -10,9 +22,22 @@ defmodule Identicon do
     |> save_image(input)
   end
 
-  def save_image(image, input) do
+  @doc """
+  Method that takes some image, and writes to file as .png
+
+  `image`: image to write
+
+  `filename`: filename to write to
+
+  ## Example
+      iex> canvas = :egd.create(250, 250)
+      iex> image = :egd.render(image)
+      iex> Identicon.save_image(image, "output.png")
+      :ok
+  """
+  def save_image(image, filename) do
     # write to file
-    File.write!("#{input}.png", image)
+    File.write!("#{filename}.png", image)
   end
 
   def draw_image(image) do
