@@ -13,6 +13,13 @@ defmodule Identicon do
     Enum.chunk_every(hex, 3)
   end
 
+  def mirrow_row(row) do
+    # get first two elements of row
+    [first, second | _tail] = row
+    # mirror this row symmetrical
+    row ++ [second, first]
+  end
+
   def pick_color(image) do
     # get first three hex codes from image to represent color (r, g, b) by destructuring from hex field
     %Identicon.Image{hex: [r, g, b | _tail]} = image
